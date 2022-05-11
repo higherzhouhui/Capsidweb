@@ -53,7 +53,7 @@ export const HeaderContainer = styled.div`
       text-decoration: none;
       color: #fff;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 500;
       display: inline;
     }
   }
