@@ -13,15 +13,19 @@ import {
   MiddleLogo,
 } from '@/styles/home';
 import {SvgIcon} from '@/uikit';
+
 const Home: NextPage = () => {
   let [currentPage, setCurrentPage] = useState(1);
   const [scrollDown, setScrollDown] = useState(true);
+  const ref: any = useRef(null);
+  let isAnimation = false;
   const pageDown = () => {
     if (currentPage >= 3) {
       setCurrentPage(3);
     } else {
       currentPage += 1;
       setCurrentPage(currentPage);
+      isAnimation = true;
     }
     setScrollDown(true);
   };
@@ -36,6 +40,9 @@ const Home: NextPage = () => {
   };
   const [scrollRenderHandler] = useDebounce(
     (e: any) => {
+      if (isAnimation) {
+        return;
+      }
       const wheelEv = e as WheelEvent;
       if (wheelEv.deltaY > 0) {
         pageDown();
@@ -44,7 +51,7 @@ const Home: NextPage = () => {
         pageUp();
       }
     },
-    300,
+    500,
     []
   );
   const [touchUp] = useDebounce(
@@ -72,12 +79,20 @@ const Home: NextPage = () => {
       touchDown,
       false
     );
+    if (ref && ref.current) {
+      ref?.current.addEventListener('animationend', () => {
+        if (isAnimation) {
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          isAnimation = false;
+        }
+      });
+    }
     return (): void => {
       document.removeEventListener('mousewheel', scrollRenderHandler);
     };
   }, [scrollRenderHandler, touchUp, touchDown]);
   return (
-    <HomeContainer>
+    <HomeContainer ref={ref}>
       <StarComp
         className={
           currentPage === 1
@@ -140,6 +155,7 @@ const StarComp: FC<StarCompProps> = ({width, height, className}) => {
         }`}
       >
         <div className='wrapper'>
+          <div className='outline' />
           <div className='content'>
             <div className='text'>
               <a href='https://pd-1st.com' rel='noreferrer' target='_blank'>
@@ -202,8 +218,8 @@ const DescripTionComp: FC<DescriptionCompProps> = ({className}) => {
     <Description className={className}>
       <div className='title'>BUILD A SUSTAINABLE NFT ECOSYSTEM</div>
       <div className='text'>
-        Capsid is an NFT derivative protocolthat empowers NFT owners to
-        issue“Rights of Use” to generate incomefrom NFT derivatives & services.
+        Capsid is an NFT derivative protocol that empowers NFT owners to
+        issue“Rights of Use”to generate incomefrom NFT derivatives & services.
       </div>
     </Description>
   );
@@ -260,17 +276,19 @@ const CompanyComp: FC<DescriptionCompProps> = ({className}) => {
           }`}
         >
           <div className='atext'>
-            <p className='title'>Joe</p>
-            <p className='adescription'>Substreight/YGG advisor</p>
-          </div>
-          <div className='atext'>
             <p className='title'>Johana</p>
-            <p className='adescription'>Helix Fund</p>
+            <p className='adescription'>Partner</p>
+            <p className='adescription'>@ Helix Fund</p>
           </div>
           <div className='atext'>
             <p className='title'>Steve</p>
             <p className='adescription'>Co-Founder</p>
             <p className='adescription'>@ Crust Network</p>
+          </div>
+          <div className='atext'>
+            <p className='title'>Joe</p>
+            <p className='adescription'>Founder @ Substreight</p>
+            <p className='adescription'>Advisor@ YGG</p>
           </div>
           <div className='atext'>
             <p className='title'>Tyler</p>
@@ -280,7 +298,7 @@ const CompanyComp: FC<DescriptionCompProps> = ({className}) => {
           <div className='atext'>
             <p className='title'>David</p>
             <p className='adescription'>COO @ Maple Media</p>
-            <p className='adescription'>&amp; Ex-google</p>
+            <p className='adescription'>Ex-Googler</p>
           </div>
         </div>
       </div>

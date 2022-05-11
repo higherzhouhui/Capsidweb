@@ -1,6 +1,5 @@
 import type {AppProps} from 'next/app';
 
-import Bg from '@/components/bg';
 import Header from '@/components/header';
 import {AppContainer} from '@/styles/app';
 import {GlobalStyle} from '@/styles/globals';
@@ -8,10 +7,11 @@ import {GlobalStyle} from '@/styles/globals';
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <AppContainer>
-      <GlobalStyle />
-      <Header />
-      <Component {...pageProps} />
-      <Bg />
+      <div className='background'>
+        <GlobalStyle />
+        <Header />
+        <Component {...pageProps} />
+      </div>
     </AppContainer>
   );
 }

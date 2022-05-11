@@ -174,20 +174,20 @@ export const AircraftComp = styled.div<AircraftProps>`
   }
   .dappOne {
     top: ${({width}) =>
-      `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 18 / 2}px`};
+      `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 14 / 2}px`};
     left: ${({height}) =>
-      `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 18 / 2}px`};
+      `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 14 / 2}px`};
   }
   @keyframes dappTwo {
     from {
       top: ${({width}) =>
-        `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 18 / 2}px`};
+        `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 14 / 2}px`};
       left: ${({height}) =>
-        `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 18 / 2}px`};
+        `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 14 / 2}px`};
     }
     to {
       top: 143px;
-      left: 91px;
+      left: 94px;
     }
   }
   .dappTwo {
@@ -202,16 +202,17 @@ export const AircraftComp = styled.div<AircraftProps>`
   }
   @keyframes boxLight {
     0% {
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+      transform: scale(1);
+      opacity: 1;
     }
-
     100% {
-      box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+      transform: scale(3);
+      opacity: 0;
     }
   }
   .dapp {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     background: #fff;
     position: absolute;
     border-radius: 50%;
@@ -220,13 +221,21 @@ export const AircraftComp = styled.div<AircraftProps>`
       position: relative;
       width: 100%;
       height: 100%;
-      animation: boxLight 1.5s infinite;
       border-radius: 50%;
       &:hover {
         .content {
           animation: fadeIn 0.8s forwards;
         }
       }
+    }
+    .outline {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transform: scale(5);
+      border: 1px solid #fff;
+      box-sizing: border-box;
+      animation: boxLight 3s infinite;
     }
     .content {
       opacity: 0;
