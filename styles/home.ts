@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+// 由于有动画采用的是绝对定位，需要定义层级覆盖
 const LayoutZIndex = {
   Company: 9,
   Logo: 999,
@@ -7,8 +7,8 @@ const LayoutZIndex = {
   PD1: 110,
   Craft: 109,
   Title: 90,
-  Contact: 9999,
   ArrowDown: 8888,
+  Contact: 9999,
 };
 
 export const HomeContainer = styled.div`
@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
       left: 50%;
       top: 50%;
     }
-    20% {
+    30% {
       left: 45%;
       top: 55%;
     }
@@ -40,7 +40,7 @@ export const HomeContainer = styled.div`
       width: 860px;
       height: 860px;
     }
-    20% {
+    30% {
       left: 110%;
       top: 45%;
     }
@@ -70,17 +70,19 @@ export const HomeContainer = styled.div`
   }
   @keyframes descriptionThree {
     0% {
-      opacity: 1;
+      display: block;
       top: 182px;
       left: 120px;
+      opacity: 1;
     }
     20% {
-      opacity: 1;
+      display: block;
       top: 200px;
       left: 120px;
     }
     100% {
-      opacity: 1;
+      display: block;
+      opacity: 0;
       top: -100vh;
       left: 120px;
     }
@@ -118,8 +120,6 @@ export const HomeContainer = styled.div`
   }
   .descriptionTwo {
     animation: fadeIn 3s forwards 1s;
-    top: 182px;
-    left: 120px;
   }
   .descriptionThree {
     animation: descriptionThree 3s forwards;
@@ -129,8 +129,6 @@ export const HomeContainer = styled.div`
   }
   .descriptionTwoBack {
     opacity: 1;
-    top: 182px;
-    left: 120px;
   }
 `;
 
@@ -149,21 +147,6 @@ export const AircraftComp = styled.div<AircraftProps>`
   position: absolute;
   transform: translate(-50%, -50%);
   z-index: ${LayoutZIndex.Stat};
-  .tuoyuan {
-    width: 140%;
-    height: 50%;
-    box-sizing: border-box;
-    border: 1px dashed rgba(255, 255, 255, 0.5);
-    position: absolute;
-    top: 25%;
-    left: 0;
-    z-index: 666;
-    border-radius: 50%;
-    transform: rotate(145deg) translate(12%, 24%);
-  }
-  .tuoyuanThree {
-    border: none;
-  }
   @keyframes spin {
     from {
       transform: rotate(135deg);
@@ -171,12 +154,6 @@ export const AircraftComp = styled.div<AircraftProps>`
     to {
       transform: rotate(-225deg);
     }
-  }
-  .dappOne {
-    top: ${({width}) =>
-      `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 14 / 2}px`};
-    left: ${({height}) =>
-      `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 14 / 2}px`};
   }
   @keyframes dappTwo {
     from {
@@ -190,6 +167,37 @@ export const AircraftComp = styled.div<AircraftProps>`
       left: 94px;
     }
   }
+  @keyframes dappOutlineAni {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+  .tuoyuan {
+    width: 140%;
+    height: 50%;
+    box-sizing: border-box;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 25%;
+    left: 0;
+    z-index: 666;
+    border-radius: 50%;
+    transform: rotate(145deg) translate(12%, 24%);
+  }
+  .tuoyuanThree {
+    animation: fadeOut 3s forwards;
+  }
+  .dappOne {
+    top: ${({width}) =>
+      `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 14 / 2}px`};
+    left: ${({height}) =>
+      `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 14 / 2}px`};
+  }
   .dappTwo {
     animation: dappTwo 3s forwards;
   }
@@ -199,16 +207,6 @@ export const AircraftComp = styled.div<AircraftProps>`
   }
   .dappThree {
     display: none;
-  }
-  @keyframes boxLight {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(3);
-      opacity: 0;
-    }
   }
   .dapp {
     width: 14px;
@@ -224,6 +222,7 @@ export const AircraftComp = styled.div<AircraftProps>`
       border-radius: 50%;
       &:hover {
         .content {
+          display: block;
           animation: fadeIn 0.8s forwards;
         }
       }
@@ -235,10 +234,11 @@ export const AircraftComp = styled.div<AircraftProps>`
       transform: scale(5);
       border: 1px solid #fff;
       box-sizing: border-box;
-      animation: boxLight 3s infinite;
+      animation: dappOutlineAni 3s infinite;
     }
     .content {
       opacity: 0;
+      display: none;
       width: 200px;
       height: 70px;
       position: absolute;
@@ -289,7 +289,7 @@ export const AircraftComp = styled.div<AircraftProps>`
     top: 0;
     left: 0;
     z-index: ${LayoutZIndex.Craft};
-    animation: ${({time}) => `spin ${time || 10}s infinite linear`};
+    animation: ${({time}) => `spin ${time || 25}s infinite linear`};
   }
   .aircraft {
     width: 40px;
@@ -330,9 +330,11 @@ export const MiddleLogo = styled.div`
 `;
 
 export const Description = styled.div`
-  position: absolute;
-  z-index: ${LayoutZIndex.Title};
   opacity: 0;
+  position: absolute;
+  top: 182px;
+  left: 120px;
+  z-index: ${LayoutZIndex.Title};
   .title {
     width: 766px;
     height: 192px;
@@ -368,6 +370,30 @@ export const Company = styled.div`
   top: 56px;
   left: 0;
   display: none;
+  @keyframes inverstorsThree {
+    from {
+      margin-top: -300px;
+    }
+    to {
+      margin-top: 0;
+    }
+  }
+  @keyframes imagesThree {
+    from {
+      left: 100vw;
+    }
+    to {
+      left: 120px;
+    }
+  }
+  @keyframes textsThree {
+    from {
+      left: -100vw;
+    }
+    to {
+      left: 120px;
+    }
+  }
   .wrapper {
     position: relative;
   }
@@ -427,30 +453,6 @@ export const Company = styled.div`
   .fiveTextsOne {
     left: -100vw;
   }
-  @keyframes inverstorsThree {
-    from {
-      margin-top: -300px;
-    }
-    to {
-      margin-top: 0;
-    }
-  }
-  @keyframes imagesThree {
-    from {
-      left: 100vw;
-    }
-    to {
-      left: 120px;
-    }
-  }
-  @keyframes textsThree {
-    from {
-      left: -100vw;
-    }
-    to {
-      left: 120px;
-    }
-  }
   .inverstorsThree {
     animation: inverstorsThree 3s forwards;
   }
@@ -488,7 +490,7 @@ export const DownArrow = styled.div`
     position: relative;
     width: 1px;
     height: 25px;
-    margin-left: 2px;
+    margin-left: 3px;
   }
   .content {
     position: absolute;

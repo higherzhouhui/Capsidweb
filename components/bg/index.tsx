@@ -11,7 +11,6 @@ export const Bg: FC = memo(() => {
     // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(main);
   };
-
   return (
     <BgContainer>
       <Particles
@@ -20,7 +19,7 @@ export const Bg: FC = memo(() => {
         options={{
           background: {
             color: {
-              value: '#131920',
+              value: 'rgba(19, 25, 32, 0.5)',
             },
           },
           fpsLimit: 120,

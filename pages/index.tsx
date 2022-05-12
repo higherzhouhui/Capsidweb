@@ -15,10 +15,17 @@ import {
 import {SvgIcon} from '@/uikit';
 
 const Home: NextPage = () => {
+  // 当前处于第几页
   let [currentPage, setCurrentPage] = useState(1);
+  // 判断是向下还是向上滚动的标志位
   const [scrollDown, setScrollDown] = useState(true);
+  // 获取当前dom节点
   const ref: any = useRef(null);
+  // 判断当前是否有动画的标志位，保证动画的顺序执行
   let isAnimation = false;
+  /**
+   * 向下滑动
+   */
   const pageDown = () => {
     if (currentPage >= 3) {
       setCurrentPage(3);
@@ -29,6 +36,9 @@ const Home: NextPage = () => {
     }
     setScrollDown(true);
   };
+  /**
+   * 向上滑动
+   */
   const pageUp = () => {
     if (currentPage === 1) {
       setCurrentPage(1);
@@ -38,6 +48,9 @@ const Home: NextPage = () => {
     }
     setScrollDown(false);
   };
+  /**
+   * 监听mousewheel的变化并使用防抖
+   */
   const [scrollRenderHandler] = useDebounce(
     (e: any) => {
       if (isAnimation) {
@@ -51,7 +64,7 @@ const Home: NextPage = () => {
         pageUp();
       }
     },
-    500,
+    300,
     []
   );
   const [touchUp] = useDebounce(
@@ -71,6 +84,7 @@ const Home: NextPage = () => {
   );
   useEffect(() => {
     document.addEventListener('mousewheel', scrollRenderHandler);
+    // 移动端监听touch
     EventUtil.listenTouchDirection(
       document,
       true,
