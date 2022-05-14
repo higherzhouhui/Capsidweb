@@ -43,16 +43,16 @@ export const HomeContainer = styled.div<MyScale>`
     100% {
       left: 100%;
       top: 50%;
-      width: ${(props) => `${big * props.x}px`};
-      height: ${(props) => `${big * props.x}px`};
+      width: ${(props) => `${big * props.y}px`};
+      height: ${(props) => `${big * props.y}px`};
     }
   }
   @keyframes stardown3 {
     0% {
       left: 100%;
       top: 50%;
-      width: ${(props) => `${big * props.x}px`};
-      height: ${(props) => `${big * props.x}px`};
+      width: ${(props) => `${big * props.y}px`};
+      height: ${(props) => `${big * props.y}px`};
     }
     30% {
       left: 110%;
@@ -62,8 +62,8 @@ export const HomeContainer = styled.div<MyScale>`
     100% {
       left: 50%;
       top: 100%;
-      width: ${(props) => `${800 * props.x}px`};
-      height: ${(props) => `${800 * props.x}px`};
+      width: ${(props) => `${middle * props.y}px`};
+      height: ${(props) => `${middle * props.y}px`};
       border: none;
     }
   }
@@ -71,42 +71,42 @@ export const HomeContainer = styled.div<MyScale>`
     0% {
       left: 100%;
       top: 50%;
-      width: ${(props) => `${big * props.x}px`};
-      height: ${(props) => `${big * props.x}px`};
+      width: ${(props) => `${big * props.y}px`};
+      height: ${(props) => `${big * props.y}px`};
     }
     30% {
       left: 110%;
       top: 45%;
-      width: ${(props) => `${big * props.x}px`};
-      height: ${(props) => `${big * props.x}px`};
+      width: ${(props) => `${big * props.y}px`};
+      height: ${(props) => `${big * props.y}px`};
     }
     100% {
       left: 50%;
       top: 50%;
-      width: ${(props) => `${656 * props.x}px`};
-      height: ${(props) => `${656 * props.x}px`};
+      width: ${(props) => `${small * props.y}px`};
+      height: ${(props) => `${small * props.y}px`};
     }
   }
   @keyframes starback2 {
     0% {
       left: 50%;
       top: 100%;
-      width: ${(props) => `${middle * props.x}px`};
-      height: ${(props) => `${middle * props.x}px`};
+      width: ${(props) => `${middle * props.y}px`};
+      height: ${(props) => `${middle * props.y}px`};
       border: none;
     }
     30% {
       left: 45%;
       top: 110%;
-      width: ${(props) => `${middle * props.x}px`};
-      height: ${(props) => `${middle * props.x}px`};
+      width: ${(props) => `${middle * props.y}px`};
+      height: ${(props) => `${middle * props.y}px`};
       border: none;
     }
     100% {
       left: 100%;
       top: 50%;
-      width: ${(props) => `${big * props.x}px`};
-      height: ${(props) => `${big * props.x}px`};
+      width: ${(props) => `${big * props.y}px`};
+      height: ${(props) => `${big * props.y}px`};
       border: 1px dashed rgba(181, 163, 163, 0.5);
     }
   }
@@ -128,7 +128,7 @@ export const HomeContainer = styled.div<MyScale>`
   }
   @keyframes descriptiondown3 {
     0% {
-      top: ${(props) => `${182 * props.y}px`};
+      top: ${(props) => `${180 * props.y}px`};
       opacity: 1;
     }
     30% {
@@ -154,7 +154,7 @@ export const HomeContainer = styled.div<MyScale>`
       top: -50vh;
     }
     100% {
-      top: ${(props) => `${182 * props.y}px`};
+      top: ${(props) => `${180 * props.y}px`};
       opacity: 1;
     }
   }
@@ -229,8 +229,8 @@ export interface AircraftProps {
 }
 export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
   style: {
-    width: `${starWidth * props.x}px`,
-    height: `${starWidth * props.x}px`,
+    width: `${starWidth * props.y}px`,
+    height: `${starWidth * props.y}px`,
     opacity: props.op,
   },
 }))`
@@ -253,36 +253,36 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
     0% {
       top: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * big * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
       left: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * big * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
     }
     30% {
       top: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * big * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
       left: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * big * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
     }
     to {
       top: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * small * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
       left: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * small * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
     }
@@ -291,25 +291,25 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
     from {
       top: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * small * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
       left: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * small * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
     }
     30% {
       top: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * small * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2 +
           15
         }px`};
       left: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * small * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2 +
           10
         }px`};
@@ -317,12 +317,12 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
     to {
       top: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * big * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
       left: ${(props: AircraftProps) =>
         `${
-          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          ((Math.sqrt(2) - 1) * big * props.y) / 2 / Math.sqrt(2) -
           (14 * props.x) / 2
         }px`};
     }
@@ -353,12 +353,12 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
   .dappdefault1 {
     top: ${(props: AircraftProps) =>
       `${
-        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        ((Math.sqrt(2) - 1) * starWidth * props.y) / 2 / Math.sqrt(2) -
         (14 * props.x) / 2
       }px`};
     left: ${(props: AircraftProps) =>
       `${
-        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        ((Math.sqrt(2) - 1) * starWidth * props.y) / 2 / Math.sqrt(2) -
         (14 * props.x) / 2
       }px`};
   }
@@ -372,12 +372,12 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
     opacity: 0;
     top: ${(props: AircraftProps) =>
       `${
-        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        ((Math.sqrt(2) - 1) * starWidth * props.y) / 2 / Math.sqrt(2) -
         (14 * props.x) / 2
       }px`};
     left: ${(props: AircraftProps) =>
       `${
-        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        ((Math.sqrt(2) - 1) * starWidth * props.y) / 2 / Math.sqrt(2) -
         (14 * props.x) / 2
       }px`};
     animation: fadeIn 1s forwards 2s;
@@ -418,31 +418,34 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
       width: ${(props: AircraftProps) => `${200 * props.x}px`};
       height: ${(props: AircraftProps) => `${70 * props.y}px`};
       position: absolute;
-      top: ${(props: AircraftProps) => `${-55 * props.y}px`};
-      left: ${(props: AircraftProps) => `${-189 * props.x}px`};
+      top: ${(props: AircraftProps) =>
+        `${-70 * props.y + (14 * props.x) / 2}px`};
+      left: ${(props: AircraftProps) => `${-200 * props.x}px`};
     }
     .xd2 {
-      width: ${(props: AircraftProps) => `${80 * props.x}px`};
+      width: ${(props: AircraftProps) =>
+        `${(200 * props.x * 2) / 3 - (70 * props.y) / 2}px`};
       height: 0;
       border-bottom: 2px dashed #fff;
       position: absolute;
-      top: ${(props: AircraftProps) => `${61 * props.y}px`};
-      left: ${(props: AircraftProps) => `${107 * props.y}px`};
+      bottom: 0px;
+      right: 0;
       opacity: 0.5;
     }
     .xd1 {
-      width: ${(props: AircraftProps) => `${43 * props.x}px`};
+      width: ${(props: AircraftProps) => `${(1 / 2) * 70 * props.y + 3}px`};
+      transform: rotate(45deg);
       height: 0;
       border-bottom: 2px dashed #fff;
       position: absolute;
-      top: ${(props: AircraftProps) => `${45 * props.y}px`};
-      left: ${(props: AircraftProps) => `${68 * props.x}px`};
+      bottom: ${(props: AircraftProps) => `${-2 + (70 * props.y) / 4}px`};
+      left: ${(props: AircraftProps) => `${(200 * props.x) / 3 - 4}px`};
       opacity: 0.5;
-      transform: rotate(45deg);
     }
     .text {
-      width: ${(props: AircraftProps) => `${70 * props.x}px`};
-      height: ${(props: AircraftProps) => `${28 * props.y}px`};
+      width: ${(props: AircraftProps) => `${(200 * props.x) / 3}px`};
+      height: 50%;
+      box-sizing: border-box;
       border-radius: ${(props: AircraftProps) => `${5 * props.x}px`};
       border: 1px solid #ffffff;
       display: flex;
@@ -485,7 +488,7 @@ export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
     display: inline-block;
     margin: ${(props: AircraftProps) =>
       `${
-        ((((Math.sqrt(2) - 1) * small) / 2) * props.x -
+        ((((Math.sqrt(2) - 1) * small) / 2) * props.y -
           (40 * props.x) / Math.sqrt(2)) /
         Math.sqrt(2)
       }px`};
@@ -511,8 +514,8 @@ export const MiddleLogo = styled.div`
 
 export const Description = styled.div.attrs((props: MyScale) => ({
   style: {
-    top: `${180 * props.y}px`,
     left: `${120 * props.x}px`,
+    top: `${180 * props.y}px`,
   },
 }))`
   opacity: 0;
@@ -756,7 +759,7 @@ export const DownArrow = styled.div.attrs((props: MyScale) => ({
       position: absolute;
       top: 0px;
       opacity: 0;
-      animation: arrow1 3s infinite;
+      animation: arrow1 1.5s infinite;
     }
     @keyframes arrow2 {
       0% {
@@ -782,7 +785,7 @@ export const DownArrow = styled.div.attrs((props: MyScale) => ({
       position: absolute;
       top: ${(props: MyScale) => `${24 * props.y}px`};
       opacity: 0;
-      animation: arrow2 3s infinite;
+      animation: arrow2 1.5s infinite;
     }
     @keyframes arrow3 {
       0% {
@@ -805,7 +808,7 @@ export const DownArrow = styled.div.attrs((props: MyScale) => ({
       position: absolute;
       top: ${(props: MyScale) => `${48 * props.y}px`};
       opacity: 0;
-      animation: arrow3 3s infinite;
+      animation: arrow3 1.5s infinite;
     }
   }
 `;

@@ -27,13 +27,13 @@ function MyApp({Component, pageProps}: AppProps) {
       };
       const root = document.getElementById('root');
       if (root) {
-        let cx = root.clientWidth / 1440 / window.devicePixelRatio;
+        let cx = root.clientWidth / 1440;
         if (cx > 1) {
           cx = (cx - 1) * 0.8 + 1;
         } else if (cx < 1) {
           cx = 1 - (1 - cx) * 0.8;
         }
-        let cy = root.clientHeight / 900 / window.devicePixelRatio;
+        let cy = root.clientHeight / 900;
         if (cy > 1) {
           cy = (cy - 1) * 0.8 + 1;
         } else if (cy < 1) {
