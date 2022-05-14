@@ -22,12 +22,11 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-size: 12px; 
-        font-family: HarmonyOs-Regular;
+        font-family: 'HarmonyOs-Regular';
     }
     html, body{
         width: 100%;
         height: 100%;
-        min-width: 1000px;
     }
     
     ol, ul, li {

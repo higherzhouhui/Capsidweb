@@ -191,23 +191,20 @@ export const HomeContainer = styled.div<MyScale>`
     opacity: 0;
   }
   .descriptiondefault1 {
-    display: none;
+    opacity: 0;
+    z-index: 0;
   }
   .descriptiondown2 {
-    display: block;
     animation: fadeIn 2s forwards 1s;
   }
   .descriptionback1 {
-    display: block;
-    animation: descriptionback1 2s forwards;
+    animation: descriptionback1 3s forwards;
     z-index: 0;
   }
   .descriptionback2 {
-    display: block;
-    animation: descriptionback2 2s forwards 0.5s;
+    animation: descriptionback2 2.5s forwards 0.5s;
   }
   .descriptiondown3 {
-    display: block;
     animation: descriptiondown3 3s forwards;
   }
   .companydown3 {
@@ -215,9 +212,6 @@ export const HomeContainer = styled.div<MyScale>`
   }
   .companyback2 {
     display: block;
-  }
-  .fadeIn {
-    animation: fadeIn 1s forwards;
   }
 `;
 
@@ -519,23 +513,23 @@ export const Description = styled.div.attrs((props: MyScale) => ({
   },
 }))`
   opacity: 0;
-  display: none;
   position: absolute;
   z-index: ${LayoutZIndex.Title};
   .title {
     width: ${(props: MyScale) => `${766 * props.x}px`};
-    height: ${(props: MyScale) => `${192 * props.x}px`};
-    line-height: ${(props: MyScale) => `${96 * props.x}px`};
+    height: ${(props: MyScale) => `${192 * props.y}px`};
+    line-height: ${(props: MyScale) => `${96 * props.y}px`};
     font-size: ${(props: MyScale) => `${64 * props.x}px`};
-    font-family: HarmonyOs-SemBold;
+    font-family: ' HarmonyOs-SemBold';
     color: #fff;
   }
   .text {
+    margin-top: 23px;
     width: ${(props: MyScale) => `${470 * props.x}px`};
     height: ${(props: MyScale) => `${87 * props.x}px`};
     line-height: ${(props: MyScale) => `${29 * props.x}px`};
     font-size: ${(props: MyScale) => `${16 * props.x}px`};
-    font-family: HarmonyOs-Medium;
+    font-family: 'HarmonyOs-Medium';
     color: rgba(255, 255, 255, 0.6);
   }
 `;
@@ -628,7 +622,7 @@ export const Company = styled.div.attrs((props: MyScale) => ({
     font-size: ${(props: MyScale) => `${56 * props.x}px`};
     text-align: center;
     color: #fff;
-    font-family: HarmonyOs-SemBold;
+    font-family: 'HarmonyOs-Bold';
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -675,12 +669,12 @@ export const Company = styled.div.attrs((props: MyScale) => ({
     }
     .title {
       line-height: ${(props: MyScale) => `${27 * props.y}px`};
-      font-family: HarmonyOs-Bold;
+      font-family: 'HarmonyOs-Bold';
       font-size: ${(props: MyScale) => `${18 * props.x}px`};
     }
     .adescription {
       line-height: ${(props: MyScale) => `${21 * props.y}px`};
-      font-family: HarmonyOs-Medium;
+      font-family: 'HarmonyOs-Medium';
       font-size: ${(props: MyScale) => `${14 * props.x}px`};
     }
   }
@@ -688,16 +682,16 @@ export const Company = styled.div.attrs((props: MyScale) => ({
     left: -100vw;
   }
   .investorsback2 {
-    animation: investorsback2 2s forwards;
+    animation: investorsback2 3s forwards;
   }
   .investorsdown3 {
-    animation: investorsdown3 2s forwards 0.5s;
+    animation: investorsdown3 3s forwards 0.5s;
   }
   .fiveImagesback2 {
-    animation: fiveImagesback2 2s forwards;
+    animation: fiveImagesback2 3s forwards;
   }
   .fiveTextsback2 {
-    animation: fiveTextsback2 2s forwards;
+    animation: fiveTextsback2 3s forwards;
   }
   .fiveImagesdown3 {
     animation: fiveImagesdown3 2s forwards 1s;

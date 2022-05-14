@@ -34,7 +34,7 @@ export const HeaderContainer = styled.div.attrs((props: MyScale) => ({
       height: 100%;
       color: #fff;
       font-size: ${(props: MyScale) => `${props.x * 18}px`};
-      font-family: HarmonyOs-Medium;
+      font-family: 'HarmonyOs-Medium';
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -61,7 +61,7 @@ export const HeaderContainer = styled.div.attrs((props: MyScale) => ({
     a {
       color: #fff;
       font-size: ${(props: MyScale) => `${props.x * 18}px`};
-      font-family: HarmonyOs-Medium;
+      font-family: 'HarmonyOs-Medium';
       display: inline;
     }
   }
@@ -97,7 +97,7 @@ export const Modal = styled.div.attrs((props: MyScale) => ({}))`
   }
   span {
     font-size: ${(props: MyScale) => `${props.x * 20}px`};
-    font-family: HarmonyOs-Medium;
+    font-family: 'HarmonyOs-Medium';
     line-height: ${(props: MyScale) => `${props.y * 30}px`};
     color: #2590ff;
   }

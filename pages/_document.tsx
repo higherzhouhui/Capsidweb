@@ -39,13 +39,14 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta
-            content='Capsid is an NFT derivative community, with great derivative works, talented creators and web3 native users.'
+            content='Capsid is an NFT derivative protocol that empowers NFT owners to issue“Rights of Use” to generate incomefrom NFT derivatives & services.'
             name='description'
           />
           <meta
-            content='Capsid,NFT,NFT Derivative Community,NFT Creator,NFT derivatives'
+            content='Build a sustainable NFT ecosystemBuild a sustainable NFT ecosystem'
             name='keywords'
           />
+          <meta content='width=device-width, initial-scale=1' name='viewport' />
           <link href='/favicon.ico' rel='icon' />
         </Head>
         <body>

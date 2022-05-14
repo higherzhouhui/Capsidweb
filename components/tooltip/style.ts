@@ -10,9 +10,9 @@ export const ToolTip = styled.div.attrs((props: ToolPosition) => ({
   style: {
     left: props.left,
     top: props.top,
-    width: `${250 * props.x}`,
   },
 }))`
+  width: max-content;
   position: absolute;
   display: flex;
   align-items: center;

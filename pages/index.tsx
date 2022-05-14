@@ -249,7 +249,7 @@ const DescripTionComp: FC<DescriptionCompProps> = ({className}) => {
       <div className='title'>BUILD A SUSTAINABLE NFT ECOSYSTEM</div>
       <div className='text'>
         Capsid is an NFT derivative protocol that empowers NFT owners to issue
-        “Rights of Use” to generate incomefrom NFT derivatives & services.
+        “Rights of Use” to generate income from NFT derivatives & services.
       </div>
     </Description>
   );
