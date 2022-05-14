@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "set NODE_ENV=production && next build",
+    "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "set NODE_ENV=production && next export"
+    "pm2": "pm2 start npm --name 'capsid-web' -- start",
+    "build:win": "set NODE_ENV=production  && next build"
   },
   "dependencies": {
     "next": "^12.1.6",

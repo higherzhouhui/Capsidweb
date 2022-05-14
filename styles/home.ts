@@ -1,23 +1,37 @@
 import styled from 'styled-components';
-// 由于有动画采用的是绝对定位，需要定义层级覆盖
-const LayoutZIndex = {
-  Company: 9,
-  Logo: 999,
-  Stat: 99,
-  PD1: 110,
-  Craft: 109,
-  Title: 90,
-  ArrowDown: 8888,
-  Contact: 9999,
+
+import {MyScale} from '@/pages/_app';
+
+const small = 656;
+const middle = 800;
+const big = 860;
+
+let starWidth: number = small;
+export const setWidth = (width: number) => {
+  starWidth = width;
 };
 
-export const HomeContainer = styled.div`
+// 由于有动画采用的是绝对定位，需要定义层级覆盖
+export const LayoutZIndex = {
+  Stat: 9,
+  Title: 20,
+  Company: 30,
+  Craft: 109,
+  PD1: 110,
+  Logo: 999,
+  Header: 1000,
+  ArrowDown: 1001,
+  Contact: 1100,
+  Modal: 1200,
+};
+
+export const HomeContainer = styled.div<MyScale>`
   box-sizing: border-box;
   width: 100%;
-  height: calc(100vh - 72px);
+  height: 100%;
   position: relative;
   overflow: hidden;
-  @keyframes StarCompTwo {
+  @keyframes stardown2 {
     0% {
       left: 50%;
       top: 50%;
@@ -29,27 +43,71 @@ export const HomeContainer = styled.div`
     100% {
       left: 100%;
       top: 50%;
-      width: 860px;
-      height: 860px;
+      width: ${(props) => `${big * props.x}px`};
+      height: ${(props) => `${big * props.x}px`};
     }
   }
-  @keyframes StarCompThree {
+  @keyframes stardown3 {
     0% {
       left: 100%;
       top: 50%;
-      width: 860px;
-      height: 860px;
+      width: ${(props) => `${big * props.x}px`};
+      height: ${(props) => `${big * props.x}px`};
     }
     30% {
       left: 110%;
       top: 45%;
+      border: none;
     }
     100% {
       left: 50%;
       top: 100%;
-      width: 800px;
-      height: 800px;
+      width: ${(props) => `${800 * props.x}px`};
+      height: ${(props) => `${800 * props.x}px`};
       border: none;
+    }
+  }
+  @keyframes starback1 {
+    0% {
+      left: 100%;
+      top: 50%;
+      width: ${(props) => `${big * props.x}px`};
+      height: ${(props) => `${big * props.x}px`};
+    }
+    30% {
+      left: 110%;
+      top: 45%;
+      width: ${(props) => `${big * props.x}px`};
+      height: ${(props) => `${big * props.x}px`};
+    }
+    100% {
+      left: 50%;
+      top: 50%;
+      width: ${(props) => `${656 * props.x}px`};
+      height: ${(props) => `${656 * props.x}px`};
+    }
+  }
+  @keyframes starback2 {
+    0% {
+      left: 50%;
+      top: 100%;
+      width: ${(props) => `${middle * props.x}px`};
+      height: ${(props) => `${middle * props.x}px`};
+      border: none;
+    }
+    30% {
+      left: 45%;
+      top: 110%;
+      width: ${(props) => `${middle * props.x}px`};
+      height: ${(props) => `${middle * props.x}px`};
+      border: none;
+    }
+    100% {
+      left: 100%;
+      top: 50%;
+      width: ${(props) => `${big * props.x}px`};
+      height: ${(props) => `${big * props.x}px`};
+      border: 1px dashed rgba(181, 163, 163, 0.5);
     }
   }
   @keyframes fadeIn {
@@ -68,80 +126,116 @@ export const HomeContainer = styled.div`
       opacity: 0;
     }
   }
-  @keyframes descriptionThree {
+  @keyframes descriptiondown3 {
     0% {
-      display: block;
-      top: 182px;
-      left: 120px;
+      top: ${(props) => `${182 * props.y}px`};
       opacity: 1;
     }
-    20% {
-      display: block;
-      top: 200px;
-      left: 120px;
+    30% {
+      top: ${(props) => `${220 * props.y}px`};
+      opacity: 0.8;
     }
     100% {
-      display: block;
       opacity: 0;
-      top: -100vh;
-      left: 120px;
+      top: -50vh;
     }
   }
-  .StarCompOne {
+  @keyframes descriptionback1 {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes descriptionback2 {
+    0% {
+      opacity: 0;
+      top: -50vh;
+    }
+    100% {
+      top: ${(props) => `${182 * props.y}px`};
+      opacity: 1;
+    }
+  }
+  .stardefault1 {
     left: 50%;
     top: 50%;
   }
-  .StarCompTwo {
-    animation: StarCompTwo 3s forwards;
+  .starback1 {
+    animation: starback1 3s forwards;
   }
-  .startCompTwoBack {
-    left: 100%;
-    top: 50%;
-    width: 860px;
-    height: 860px;
+  .stardown2 {
+    animation: stardown2 3s forwards;
   }
-  .StarCompThree {
-    animation: StarCompThree 3s forwards;
+  .starback2 {
+    animation: starback2 3s forwards;
   }
-  .logoOne {
+  .stardown3 {
+    animation: stardown3 3s forwards;
+  }
+  .logodefault1 {
     opacity: 1;
   }
-  .logoTwo {
+  .logoback1 {
+    opacity: 0;
+    animation: fadeIn 2s forwards 1s;
+  }
+  .logodown2 {
     animation: fadeOut 3s forwards;
   }
-  .logoTwoBack {
+  .logoback2 {
     opacity: 0;
   }
-  .logoThree {
+  .logodown3 {
     opacity: 0;
   }
-  .descriptionOne {
-    opacity: 0;
+  .descriptiondefault1 {
+    display: none;
   }
-  .descriptionTwo {
-    animation: fadeIn 3s forwards 1s;
+  .descriptiondown2 {
+    display: block;
+    animation: fadeIn 2s forwards 1s;
   }
-  .descriptionThree {
-    animation: descriptionThree 3s forwards;
+  .descriptionback1 {
+    display: block;
+    animation: descriptionback1 2s forwards;
+    z-index: 0;
   }
-  .companyThree {
+  .descriptionback2 {
+    display: block;
+    animation: descriptionback2 2s forwards 0.5s;
+  }
+  .descriptiondown3 {
+    display: block;
+    animation: descriptiondown3 3s forwards;
+  }
+  .companydown3 {
     display: block;
   }
-  .descriptionTwoBack {
-    opacity: 1;
+  .companyback2 {
+    display: block;
+  }
+  .fadeIn {
+    animation: fadeIn 1s forwards;
   }
 `;
 
 export interface AircraftProps {
-  width: number;
-  height: number;
+  op: number;
   time?: number;
+  x: number;
+  y: number;
 }
-export const AircraftComp = styled.div<AircraftProps>`
-  width: ${({width}) => `${width}px`};
-  height: ${({height}) => `${height}px`};
+export const AircraftComp = styled.div.attrs((props: AircraftProps) => ({
+  style: {
+    width: `${starWidth * props.x}px`,
+    height: `${starWidth * props.x}px`,
+    opacity: props.op,
+  },
+}))`
   box-sizing: border-box;
-  border: 1px dashed rgba(255, 255, 255, 0.5);
+  border: 1px dashed rgba(181, 163, 163, 0.5);
   border-radius: 50%;
   display: inline-block;
   position: absolute;
@@ -155,16 +249,82 @@ export const AircraftComp = styled.div<AircraftProps>`
       transform: rotate(-225deg);
     }
   }
-  @keyframes dappTwo {
-    from {
-      top: ${({width}) =>
-        `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 14 / 2}px`};
-      left: ${({height}) =>
-        `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 14 / 2}px`};
+  @keyframes dappback1 {
+    0% {
+      top: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+      left: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+    }
+    30% {
+      top: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+      left: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
     }
     to {
-      top: 143px;
-      left: 94px;
+      top: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+      left: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+    }
+  }
+  @keyframes dappdown2 {
+    from {
+      top: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+      left: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+    }
+    30% {
+      top: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2 +
+          15
+        }px`};
+      left: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * small * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2 +
+          10
+        }px`};
+    }
+    to {
+      top: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
+      left: ${(props: AircraftProps) =>
+        `${
+          ((Math.sqrt(2) - 1) * big * props.x) / 2 / Math.sqrt(2) -
+          (14 * props.x) / 2
+        }px`};
     }
   }
   @keyframes dappOutlineAni {
@@ -177,40 +337,57 @@ export const AircraftComp = styled.div<AircraftProps>`
       opacity: 0;
     }
   }
-  .tuoyuan {
-    width: 140%;
-    height: 50%;
-    box-sizing: border-box;
-    border: 1px dashed rgba(255, 255, 255, 0.5);
-    position: absolute;
-    top: 25%;
-    left: 0;
-    z-index: 666;
-    border-radius: 50%;
-    transform: rotate(145deg) translate(12%, 24%);
+  .gd {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.4);
   }
-  .tuoyuanThree {
-    animation: fadeOut 3s forwards;
+  .gdback2 {
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.5s;
   }
-  .dappOne {
-    top: ${({width}) =>
-      `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 14 / 2}px`};
-    left: ${({height}) =>
-      `${((Math.sqrt(2) - 1) * height) / 2 / Math.sqrt(2) - 14 / 2}px`};
+  .gddown3 {
+    animation: fadeOut 1s forwards;
   }
-  .dappTwo {
-    animation: dappTwo 3s forwards;
+  .dappdefault1 {
+    top: ${(props: AircraftProps) =>
+      `${
+        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        (14 * props.x) / 2
+      }px`};
+    left: ${(props: AircraftProps) =>
+      `${
+        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        (14 * props.x) / 2
+      }px`};
   }
-  .dappTwoBack {
-    top: 143px;
-    left: 91px;
+  .dappback1 {
+    animation: dappback1 3s forwards;
   }
-  .dappThree {
-    display: none;
+  .dappdown2 {
+    animation: dappdown2 3s forwards;
+  }
+  .dappback2 {
+    opacity: 0;
+    top: ${(props: AircraftProps) =>
+      `${
+        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        (14 * props.x) / 2
+      }px`};
+    left: ${(props: AircraftProps) =>
+      `${
+        ((Math.sqrt(2) - 1) * starWidth * props.x) / 2 / Math.sqrt(2) -
+        (14 * props.x) / 2
+      }px`};
+    animation: fadeIn 1s forwards 2s;
+  }
+  .dappdown3 {
+    opacity: 0;
   }
   .dapp {
-    width: 14px;
-    height: 14px;
+    width: ${(props: AircraftProps) => `${14 * props.x}px`};
+    height: ${(props: AircraftProps) => `${14 * props.x}px`};
     background: #fff;
     position: absolute;
     border-radius: 50%;
@@ -231,7 +408,6 @@ export const AircraftComp = styled.div<AircraftProps>`
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      transform: scale(5);
       border: 1px solid #fff;
       box-sizing: border-box;
       animation: dappOutlineAni 3s infinite;
@@ -239,35 +415,35 @@ export const AircraftComp = styled.div<AircraftProps>`
     .content {
       opacity: 0;
       display: none;
-      width: 200px;
-      height: 70px;
+      width: ${(props: AircraftProps) => `${200 * props.x}px`};
+      height: ${(props: AircraftProps) => `${70 * props.y}px`};
       position: absolute;
-      top: -54px;
-      left: -193px;
+      top: ${(props: AircraftProps) => `${-55 * props.y}px`};
+      left: ${(props: AircraftProps) => `${-189 * props.x}px`};
     }
     .xd2 {
-      width: 80px;
+      width: ${(props: AircraftProps) => `${80 * props.x}px`};
       height: 0;
       border-bottom: 2px dashed #fff;
       position: absolute;
-      top: 62px;
-      left: 105px;
+      top: ${(props: AircraftProps) => `${61 * props.y}px`};
+      left: ${(props: AircraftProps) => `${107 * props.y}px`};
       opacity: 0.5;
     }
     .xd1 {
-      width: 40px;
+      width: ${(props: AircraftProps) => `${43 * props.x}px`};
       height: 0;
       border-bottom: 2px dashed #fff;
       position: absolute;
-      top: 45px;
-      left: 67px;
+      top: ${(props: AircraftProps) => `${45 * props.y}px`};
+      left: ${(props: AircraftProps) => `${68 * props.x}px`};
       opacity: 0.5;
       transform: rotate(45deg);
     }
     .text {
-      width: 69px;
-      height: 28px;
-      border-radius: 5px;
+      width: ${(props: AircraftProps) => `${70 * props.x}px`};
+      height: ${(props: AircraftProps) => `${28 * props.y}px`};
+      border-radius: ${(props: AircraftProps) => `${5 * props.x}px`};
       border: 1px solid #ffffff;
       display: flex;
       align-items: center;
@@ -279,7 +455,7 @@ export const AircraftComp = styled.div<AircraftProps>`
     a {
       color: #fff;
       text-decoration: none;
-      font-size: 16px;
+      font-size: ${(props: AircraftProps) => `${16 * props.x}px`};
     }
   }
   .rotate {
@@ -289,26 +465,30 @@ export const AircraftComp = styled.div<AircraftProps>`
     top: 0;
     left: 0;
     z-index: ${LayoutZIndex.Craft};
-    animation: ${({time}) => `spin ${time || 25}s infinite linear`};
+    transform: rotate(135deg);
+    animation: ${(props: AircraftProps) =>
+      `spin ${props.time || 25}s infinite linear`};
+  }
+  .rotatedown2 {
+    display: none;
+  }
+  .rotatedown3 {
+    display: none;
+  }
+  .rotateback2 {
+    display: none;
   }
   .aircraft {
-    width: 40px;
-    height: 40px;
+    width: ${(props: AircraftProps) => `${40 * props.x}px`};
+    height: ${(props: AircraftProps) => `${40 * props.x}px`};
     transform: rotate(225deg);
-    margin: ${({width}) =>
-      `${((Math.sqrt(2) - 1) * width) / 2 / Math.sqrt(2) - 40 / 2}px`};
-  }
-  .aircraftOne {
     display: inline-block;
-  }
-  .aircraftTwo {
-    opacity: 0;
-  }
-  .aircraftTwoBack {
-    opacity: 0;
-  }
-  .aircraftThree {
-    display: none;
+    margin: ${(props: AircraftProps) =>
+      `${
+        ((((Math.sqrt(2) - 1) * small) / 2) * props.x -
+          (40 * props.x) / Math.sqrt(2)) /
+        Math.sqrt(2)
+      }px`};
   }
   .img {
     width: 91%;
@@ -329,96 +509,144 @@ export const MiddleLogo = styled.div`
   z-index: ${LayoutZIndex.Logo};
 `;
 
-export const Description = styled.div`
+export const Description = styled.div.attrs((props: MyScale) => ({
+  style: {
+    top: `${180 * props.y}px`,
+    left: `${120 * props.x}px`,
+  },
+}))`
   opacity: 0;
+  display: none;
   position: absolute;
-  top: 182px;
-  left: 120px;
   z-index: ${LayoutZIndex.Title};
   .title {
-    width: 766px;
-    height: 192px;
-    line-height: 96px;
-    font-size: 64px;
-    font-weight: bold;
+    width: ${(props: MyScale) => `${766 * props.x}px`};
+    height: ${(props: MyScale) => `${192 * props.x}px`};
+    line-height: ${(props: MyScale) => `${96 * props.x}px`};
+    font-size: ${(props: MyScale) => `${64 * props.x}px`};
+    font-family: HarmonyOs-SemBold;
     color: #fff;
   }
   .text {
-    width: 469px;
-    height: 87px;
-    font-size: 16px;
-    font-weight: 500;
+    width: ${(props: MyScale) => `${470 * props.x}px`};
+    height: ${(props: MyScale) => `${87 * props.x}px`};
+    line-height: ${(props: MyScale) => `${29 * props.x}px`};
+    font-size: ${(props: MyScale) => `${16 * props.x}px`};
+    font-family: HarmonyOs-Medium;
     color: rgba(255, 255, 255, 0.6);
-    line-height: 29px;
   }
 `;
 
-export const Contact = styled.div`
+export const Contact = styled.div.attrs((props: MyScale) => ({
+  style: {
+    left: `${100 * props.x}px`,
+    bottom: `${40 * props.y}px`,
+  },
+}))`
   z-index: ${LayoutZIndex.Contact};
   position: absolute;
-  left: 120px;
-  bottom: 80px;
-  a:first-child {
-    margin-bottom: 24px;
+  a {
+    margin-top: ${(props: MyScale) => `${20 * props.y}px`};
   }
 `;
 
-export const Company = styled.div`
+export const Company = styled.div.attrs((props: MyScale) => ({
+  style: {
+    top: `${72 * props.y}px`,
+  },
+}))`
   z-index: ${LayoutZIndex.Company};
   position: absolute;
   width: 100%;
-  top: 56px;
+  top: 72px;
   left: 0;
   display: none;
-  @keyframes inverstorsThree {
-    from {
-      margin-top: -300px;
+  @keyframes investorsback2 {
+    0% {
+      top: 0;
+    }
+    30% {
+      top: 50px;
     }
     to {
-      margin-top: 0;
+      top: -50vh;
     }
   }
-  @keyframes imagesThree {
+  @keyframes investorsdown3 {
+    from {
+      top: -50vh;
+    }
+    to {
+      top: 0;
+    }
+  }
+  @keyframes fiveImagesback2 {
+    0% {
+      left: -0;
+    }
+    30% {
+      left: -70px;
+    }
+    100% {
+      left: 100vw;
+    }
+  }
+  @keyframes fiveImagesdown3 {
     from {
       left: 100vw;
     }
     to {
-      left: 120px;
+      left: 0;
     }
   }
-  @keyframes textsThree {
+  @keyframes fiveTextsback2 {
+    0% {
+      left: 0;
+    }
+    30% {
+      left: 70px;
+    }
+    100% {
+      left: -100vw;
+    }
+  }
+  @keyframes fiveTextsdown3 {
     from {
       left: -100vw;
     }
     to {
-      left: 120px;
+      left: 0;
     }
   }
   .wrapper {
     position: relative;
   }
-  .inverstors {
+  .investors {
+    font-size: ${(props: MyScale) => `${56 * props.x}px`};
     text-align: center;
-    font-size: 56px;
     color: #fff;
-    font-weight: bold;
+    font-family: HarmonyOs-SemBold;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    top: -50vh;
   }
-  .inverstorsOne {
+  .investorsOne {
     top: 0;
   }
   .fiveImages {
     display: flex;
     justify-content: space-around;
-    top: 130px;
+    top: ${(props: MyScale) => `${110 * props.y}px`};
     position: absolute;
-    min-width: calc(100vw - 240px);
+    width: 100%;
+    padding: ${(props: MyScale) => `0 ${120 * props.x}px`};
+    box-sizing: border-box;
+    left: 100vw;
     .aimage {
       position: relative;
-      height: 180px;
-      width: 180px;
+      height: ${(props: MyScale) => `${180 * props.x}px`};
+      width: ${(props: MyScale) => `${180 * props.x}px`};
     }
   }
   .fiveImagesOne {
@@ -427,12 +655,15 @@ export const Company = styled.div`
   .fiveTexts {
     display: flex;
     justify-content: space-around;
-    top: 320px;
+    top: ${(props: MyScale) => `${320 * props.y}px`};
     left: 0;
     position: absolute;
-    min-width: calc(100vw - 240px);
+    width: 100%;
+    padding: ${(props: MyScale) => `0 ${120 * props.x}px`};
+    box-sizing: border-box;
     color: #fff;
     opacity: 0.5;
+    left: -100vw;
     .atext {
       text-align: center;
       color: #fff;
@@ -440,77 +671,141 @@ export const Company = styled.div`
       width: 180px;
     }
     .title {
-      line-height: 27px;
-      font-weight: bold;
-      font-size: 18px;
+      line-height: ${(props: MyScale) => `${27 * props.y}px`};
+      font-family: HarmonyOs-Bold;
+      font-size: ${(props: MyScale) => `${18 * props.x}px`};
     }
     .adescription {
-      line-height: 21px;
-      font-weight: 400;
-      font-size: 14px;
+      line-height: ${(props: MyScale) => `${21 * props.y}px`};
+      font-family: HarmonyOs-Medium;
+      font-size: ${(props: MyScale) => `${14 * props.x}px`};
     }
   }
   .fiveTextsOne {
     left: -100vw;
   }
-  .inverstorsThree {
-    animation: inverstorsThree 3s forwards;
+  .investorsback2 {
+    animation: investorsback2 2s forwards;
   }
-  .imagesThree {
-    animation: imagesThree 3s forwards;
+  .investorsdown3 {
+    animation: investorsdown3 2s forwards 0.5s;
   }
-  .textsThree {
-    animation: textsThree 3s forwards;
+  .fiveImagesback2 {
+    animation: fiveImagesback2 2s forwards;
+  }
+  .fiveTextsback2 {
+    animation: fiveTextsback2 2s forwards;
+  }
+  .fiveImagesdown3 {
+    animation: fiveImagesdown3 2s forwards 1s;
+  }
+  .fiveTextsdown3 {
+    animation: fiveTextsdown3 2s forwards 1s;
   }
 `;
 
-export const DownArrow = styled.div`
+export const DownArrow = styled.div.attrs((props: MyScale) => ({
+  style: {
+    width: `${24 * props.y}px`,
+    height: `${72 * props.y}px`,
+    right: `${120 * props.x}px`,
+    bottom: `${40 * props.y}px`,
+  },
+}))`
   position: absolute;
-  width: 8px;
-  height: 33px;
   overflow: hidden;
-  right: 120px;
-  bottom: 80px;
   z-index: ${LayoutZIndex.ArrowDown};
-  @keyframes downArrow {
-    0% {
-      top: -33px;
-    }
-    30% {
-      top: 0;
-    }
-    70% {
-      top: 0;
-    }
-    100% {
-      top: 33px;
-    }
-  }
   .wrapper {
     position: relative;
-    width: 1px;
-    height: 25px;
-    margin-left: 3px;
+    width: 100%;
+    height: 100%;
   }
   .content {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: -33px;
-    animation: downArrow 3s infinite;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    .bg {
+      width: ${(props: MyScale) => `${24 * props.y}px`};
+      height: ${(props: MyScale) => `${24 * props.y}px`};
+    }
     .arrowMain {
       background: #fff;
       width: 100%;
       height: 100%;
     }
-    .arrow {
+    @keyframes arrow1 {
+      0% {
+        opacity: 1;
+      }
+      32% {
+        opacity: 1;
+      }
+      33% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .arrow1 {
       position: absolute;
-      top: 25px;
-      transform: translateX(-45%);
-      width: 0;
-      height: 0;
-      border: 4px solid transparent;
-      border-top-color: #fff;
+      top: 0px;
+      opacity: 0;
+      animation: arrow1 3s infinite;
+    }
+    @keyframes arrow2 {
+      0% {
+        opacity: 0;
+      }
+      33% {
+        opacity: 0;
+      }
+      34% {
+        opacity: 1;
+      }
+      65% {
+        opacity: 1;
+      }
+      66% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .arrow2 {
+      position: absolute;
+      top: ${(props: MyScale) => `${24 * props.y}px`};
+      opacity: 0;
+      animation: arrow2 3s infinite;
+    }
+    @keyframes arrow3 {
+      0% {
+        opacity: 0;
+      }
+      66% {
+        opacity: 0;
+      }
+      67% {
+        opacity: 1;
+      }
+      99% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .arrow3 {
+      position: absolute;
+      top: ${(props: MyScale) => `${48 * props.y}px`};
+      opacity: 0;
+      animation: arrow3 3s infinite;
     }
   }
 `;

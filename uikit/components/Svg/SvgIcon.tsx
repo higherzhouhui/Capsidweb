@@ -9,6 +9,7 @@ const importAll = (requireContext: __WebpackModuleApi.RequireContext) => {
 try {
   importAll(require.context('../../../public/static/svg', true, /\.svg$/));
 } catch (error) {
+  // eslint-disable-next-line no-console
   console.log(error);
 }
 
