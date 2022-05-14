@@ -231,7 +231,7 @@ const MiddleLogoComp: FC<MiddleLogoProps> = ({className}) => {
         alt='logotext'
         height={155 * myScale.y}
         src='/static/images/logobig.png'
-        width={593 * myScale.x}
+        width={593 * myScale.y}
       />
     </MiddleLogo>
   );
